@@ -18,11 +18,11 @@ WORKDIR /home/$USER_NAME
 # Prepare config folder
 RUN mkdir -p /home/$USER_NAME/.znc/configs
 
-# Add a pre-seeded config (admin: znc / znc123)
-COPY znc.conf /home/$USER_NAME/.znc/configs/znc.conf
+# Copy pre-seeded config into place
+COPY znc.conf /home/zncuser/.znc/configs/znc.conf
 
-# Expose port (Render will route traffic here)
+# Expose fixed port
 EXPOSE 10000
 
-# Run ZNC with our config
-CMD ["znc", "--foreground", "--datadir", "/home/${USER_NAME}/.znc"]
+# Run ZNC
+CMD ["znc", "--foreground", "--datadir", "/home/zncuser/.znc"]
