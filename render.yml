@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: znc
+    env: docker
+    plan: free
+    autoDeploy: true
+    docker:
+      image: znc:latest
+      command: ["--foreground", "--datadir", "/znc-data", "--listen", "10000"]
+    ports:
+      - 10000
