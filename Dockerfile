@@ -27,7 +27,7 @@ RUN chown -R $USER_NAME:$USER_NAME /home/$USER_NAME/.znc
 USER $USER_NAME
 
 # Expose port
-EXPOSE 10000
+EXPOSE 443
 
 # Run ZNC
 CMD ["znc", "--foreground", "--datadir", "/home/zncuser/.znc"]
