@@ -17,16 +17,16 @@ WORKDIR /home/$USER_NAME
 # Prepare config folder
 RUN mkdir -p /home/$USER_NAME/.znc/configs
 
-# Copy config as root
+# Copy config
 COPY znc.conf /home/$USER_NAME/.znc/configs/znc.conf
 
-# Fix permissions so zncuser owns it
+# Ensure zncuser owns the config
 RUN chown -R $USER_NAME:$USER_NAME /home/$USER_NAME/.znc
 
 # Switch to zncuser
 USER $USER_NAME
 
-# Expose fixed port
+# Expose port
 EXPOSE 10000
 
 # Run ZNC
