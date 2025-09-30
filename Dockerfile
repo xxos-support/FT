@@ -17,17 +17,19 @@ WORKDIR /home/$USER_NAME
 # Prepare config folder
 RUN mkdir -p /home/$USER_NAME/.znc/configs
 
-# Copy config
+# Copy pre-seeded config
 COPY znc.conf /home/$USER_NAME/.znc/configs/znc.conf
 
-# Ensure zncuser owns the config
+# Fix ownership
 RUN chown -R $USER_NAME:$USER_NAME /home/$USER_NAME/.znc
 
-# Switch to zncuser
+# Switch to non-root user
 USER $USER_NAME
 
-# Expose port
-EXPOSE 443
+# Expose port (Render will set $PORT)
+EXPOSE 10000
 
-# Run ZNC
-CMD ["znc", "--foreground", "--datadir", "/home/zncuser/.znc"]
+# Run ZNC using the dynamic $PORT
+CMD ["sh", "-c", "znc --foreground --datadir /home/$USER_NAME/.znc --makepem --allow-root && \
+                    sed -i 's/Port = 10000/Port = ${PORT}/' /home/$USER_NAME/.znc/configs/znc.conf && \
+                    znc --foreground --datadir /home/$USER_NAME/.znc"]
