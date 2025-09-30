@@ -1,0 +1,10 @@
+version: '3'
+services:
+  znc:
+    build:
+      context: .
+      args:
+        USER_NAME: ${USER}
+    ports:
+      - "10000:10000"
+    container_name: znc
