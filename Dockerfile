@@ -30,6 +30,4 @@ USER $USER_NAME
 EXPOSE 10000
 
 # Run ZNC using the dynamic $PORT
-CMD ["sh", "-c", "znc --foreground --datadir /home/$USER_NAME/.znc --makepem --allow-root && \
-                    sed -i 's/Port = 10000/Port = ${PORT}/' /home/$USER_NAME/.znc/configs/znc.conf && \
-                    znc --foreground --datadir /home/$USER_NAME/.znc"]
+CMD ["sh", "-c", "znc --foreground --datadir /home/$USER_NAME/.znc --makepem --allow-root 
