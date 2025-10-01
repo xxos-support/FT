@@ -6,4 +6,4 @@ services:
       image: znc:latest
       command: ["--foreground", "--datadir", "/znc-data", "--listen", "443"]
     ports:
-      - 443
+      - 10000
